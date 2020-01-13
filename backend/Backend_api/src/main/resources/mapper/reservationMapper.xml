@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.deepening.dao.ReservationMapper">
+
+	<select id="searchOnceReservationM" parameterType="String" resultType="reserve">
+		SELECT * FROM user_reservation m,reservation r WHERE r.user_email=#{user_email} AND r.id=m.reservation_id;
+	</select>
+	
+	<select id="searchOnceReservation" parameterType="String" resultType="reserve">
+		SELECT * FROM matching_waiting m,reservation r WHERE r.user_email=#{user_email} AND r.id=m.reservation_id;
+	</select>
+	
+	<insert id="insertMachingWating" parameterType="reserve">
+		INSERT INTO matching_waiting values (#{id},#{start},#{end})
+	</insert>
+	
+	<insert id="insertReservation" parameterType="reserve">
+		INSERT INTO reservation values (#{useraddress}, #{petsize}, #{pettype}, #{petname},#{petage},#{id},#{user_email},#{detail_address},#{reservation_type});
+	</insert>
+
+</mapper>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.deepening.dao.UserMapper">
+
+	<select id="findAllUser" resultType="user">
+		SELECT ut.type,u.name,u.birth,u.email,u.nickname FROM user u, user_type ut WHERE ut.id=u.user_type_id;
+	</select>
+
+	<select id="searchOnceUser" parameterType="String" resultType="user">
+		SELECT u.pass,ut.type,u.gender,u.address,u.timestamp,u.name,u.email,u.nickname FROM user u, user_type ut WHERE ut.id=u.user_type_id AND u.email=#{email};
+	</select>
+
+	<delete id="deleteUser" parameterType="String">
+		DELETE FROM user
+		WHERE email=#{email};
+	</delete>
+
+	<update id="updateUser" parameterType="user">
+		UPDATE user set
+		address=#{address},x=#{x},y=#{y} WHERE email=#{email};
+	</update>
+
+	<insert id="insertUser" parameterType="user">
+		INSERT INTO user values (#{pass}, #{name}, #{birth}, #{email}, #{nickname}, #{user_type_id},#{timestamp},#{gender},#{address},#{x},#{y});
+	</insert>
+	<select id="countUserAdmin" resultType="int">
+		SELECT count(*) FROM user WHERE authority ='admin'
+	</select>
+	<select id="searchFetSitter" resultType="user">
+		SELECT ut.type,u.pass,u.name,u.birth,u.x,u.y,u.email,u.nickname FROM user u, user_type ut WHERE ut.id=u.user_type_id AND ut.id=2;
+	</select>
+	
+</mapper>

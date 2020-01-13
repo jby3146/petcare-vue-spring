@@ -1,0 +1,17 @@
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias type="com.ssafy.deepening.dto.UserDto" alias="user"/>
+		<typeAlias type="com.ssafy.deepening.dto.SitterDto" alias="sitter"/>
+		<typeAlias type="com.ssafy.deepening.dto.PetSizeDto" alias="size"/>
+		<typeAlias type="com.ssafy.deepening.dto.ReservationDto" alias="reserve"/>
+	</typeAliases>
+	
+	<mappers>
+		<mapper resource="mapper/userMapper.xml"/>
+		<mapper resource="mapper/sitterMapper.xml"/>
+		<mapper resource="mapper/reservationMapper.xml"/>
+	</mappers>
+</configuration>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.deepening.dao.SitterMapper">
+	<insert id="insertSitter" parameterType="sitter">
+		INSERT INTO sitter values (#{id}, #{phone},#{subject}, #{created_at}, #{residence_type_id}, #{sitter_period_id}, #{pet_size_id}, #{sitter_type_id}, #{user_email}, #{staycare},#{daycare},#{imgurl});
+	</insert>
+	<select id="findAllSitter" resultType="sitter">
+		select u.name, u.address, s.subject , s.staycare, s.daycare, rt.type as residence_type , sp.type as sitter_period, st.type sitter_type, ps.type as pet_size ,s.imgurl  
+		from sitter s , user u , residence_type rt , sitter_period sp , sitter_type st , pet_size ps
+		where u.email = s.user_email and s.residence_type_id = rt.id and s. sitter_period_id = sp.id and s.sitter_type_id = st.id and ps.id = s.pet_size_id; 
+	</select>
+	
+</mapper>
